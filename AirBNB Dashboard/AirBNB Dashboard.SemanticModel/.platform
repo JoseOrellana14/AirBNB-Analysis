@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "AirBNB Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "abfd97ce-af94-45f0-9f5a-e114b3d46200"
+  }
+}
