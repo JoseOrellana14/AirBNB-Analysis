@@ -55,13 +55,6 @@
         "toTable": "LocalDateTable_a38adb0d-78af-49f3-8743-38884f3d39f3"
       },
       {
-        "name": "AutoDetected_8abe9613-5a36-4716-9455-4f2bd40c4d82",
-        "fromColumn": "Propiedad",
-        "fromTable": "cleaned_DataFrame",
-        "toColumn": "Propiedad",
-        "toTable": "customer_demographics_by_property"
-      },
-      {
         "name": "AutoDetected_050b483a-f1c0-4104-8cfc-a6314dd19787",
         "fromColumn": "Propiedad",
         "fromTable": "occupancy_leading_by_property",
@@ -89,6 +82,15 @@
         "fromTable": "cleaned_DataFrame",
         "toColumn": "Date",
         "toTable": "DateTable"
+      },
+      {
+        "name": "2817df35-6398-cd33-f63e-31e5045e3a17",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "Propiedad",
+        "fromTable": "occupancy_leading_by_property",
+        "toCardinality": "many",
+        "toColumn": "Propiedad",
+        "toTable": "cleaned_DataFrame"
       }
     ],
     "sourceQueryCulture": "en-US",
@@ -1325,7 +1327,7 @@
             "formatString": "0",
             "lineageTag": "c491837a-d37d-464f-98a5-e06a215c05b6",
             "sourceColumn": "Número de adultos",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "Número de niños",
@@ -1339,7 +1341,7 @@
             "formatString": "0",
             "lineageTag": "d92d2122-558b-4162-a46f-29b0dc61d765",
             "sourceColumn": "Número de niños",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "Número de bebés",
@@ -1353,7 +1355,7 @@
             "formatString": "0",
             "lineageTag": "ed099c58-feba-48e5-bfb0-51f0716d1220",
             "sourceColumn": "Número de bebés",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "Código de confirmación",
@@ -1367,7 +1369,7 @@
             "formatString": "0",
             "lineageTag": "18211614-b01f-4ff4-a52d-6445d74da3dd",
             "sourceColumn": "Código de confirmación",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           }
         ],
         "lineageTag": "364671f7-9f4d-4362-879c-5efe9e2e9f00",

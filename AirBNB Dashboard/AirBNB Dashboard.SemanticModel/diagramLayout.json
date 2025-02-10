@@ -16,7 +16,7 @@
           "nodeIndex": "cleaned_DataFrame",
           "nodeLineageTag": "20cca5dd-c361-48e2-84ee-3bb784ca5680",
           "size": {
-            "height": 300,
+            "height": 441.66666666666669,
             "width": 234
           },
           "zIndex": 0
@@ -29,7 +29,7 @@
           "nodeIndex": "occupancy_leading_by_property",
           "nodeLineageTag": "d55f8fa9-a738-4670-8fbb-cd0e346d34b1",
           "size": {
-            "height": 248,
+            "height": 261.33333333333331,
             "width": 234
           },
           "zIndex": 0
@@ -88,10 +88,11 @@
         },
         {
           "location": {
-            "x": 1704,
-            "y": 50
+            "x": 1004.9999974568684,
+            "y": 333.33333333333337
           },
           "nodeIndex": "Property_Images",
+          "nodeLineageTag": "2e9427b8-f64e-490a-ad76-70d0c17cc7a9",
           "size": {
             "height": 200,
             "width": 234
@@ -113,7 +114,7 @@
         }
       ],
       "name": "Todas las tablas",
-      "zoomValue": 40.052554724883137,
+      "zoomValue": 60,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,
