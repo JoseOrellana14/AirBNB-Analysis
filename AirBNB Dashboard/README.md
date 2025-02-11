@@ -10,3 +10,8 @@ We will begin with the visualization of the data
 
 # Still planning how the general analysis dashboard will be, I'm inclined on adding more card visualizations and delete the donut one, due to almost all our customers are adults.
 ![alt text](image-2.png)
+
+# Final canvas for the general analysis dashboard, with the new corrected data frames
+![alt text](image-3.png)
+# Relationships between tables, to ensure a dynamic dashboard
+![alt text](image-4.png)

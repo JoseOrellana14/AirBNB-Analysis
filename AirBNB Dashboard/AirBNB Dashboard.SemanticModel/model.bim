@@ -128,6 +128,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navegación"
           }
         ],
         "columns": [
@@ -357,6 +361,19 @@
             "lineageTag": "1282f191-1086-49ef-a894-54eef13e192d",
             "sourceColumn": "Property Type",
             "summarizeBy": "none"
+          },
+          {
+            "name": "Management",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c45433b4-ab8f-4cd0-a58d-d1c0e689d2c3",
+            "sourceColumn": "Management",
+            "summarizeBy": "none"
           }
         ],
         "lineageTag": "20cca5dd-c361-48e2-84ee-3bb784ca5680",
@@ -367,7 +384,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Origen = Csv.Document(File.Contents(\"C:\\Documents\\AirBNB\\github_repository\\cleaned_DataFrame.csv\"),[Delimiter=\",\", Columns=14, Encoding=65001, QuoteStyle=QuoteStyle.None]),",
+                "    Origen = Csv.Document(File.Contents(\"C:\\Documents\\AirBNB\\github_repository\\cleaned_DataFrame.csv\"),[Delimiter=\",\", Columns=15, Encoding=65001, QuoteStyle=QuoteStyle.None]),",
                 "    #\"Encabezados promovidos\" = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),",
                 "    #\"Tipo cambiado\" = Table.TransformColumnTypes(#\"Encabezados promovidos\",{{\"Código de confirmación\", type text}, {\"Estado\", type text}, {\"Nombre del huésped\", type text}, {\"Contacto\", type text}, {\"Número de adultos\", Int64.Type}, {\"Número de niños\", Int64.Type}, {\"Número de bebés\", Int64.Type}, {\"Ingreso\", type date}, {\"Salida\", type date}, {\"Número de noches\", Int64.Type}, {\"Fecha de Reservación\", type date}, {\"Propiedad\", type text}, {\"Ingresos Totales\", type number}, {\"Property Type\", type text}})",
                 "in",
