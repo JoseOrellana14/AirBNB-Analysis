@@ -88,8 +88,8 @@
         },
         {
           "location": {
-            "x": 1004.9999974568684,
-            "y": 333.33333333333337
+            "x": 964.99999745686841,
+            "y": 340.00000000000006
           },
           "nodeIndex": "Property_Images",
           "nodeLineageTag": "2e9427b8-f64e-490a-ad76-70d0c17cc7a9",
@@ -108,6 +108,19 @@
           "nodeLineageTag": "800dc560-bb90-4125-b130-e15785210eb5",
           "size": {
             "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 278.33333079020167,
+            "y": 606.60042774888734
+          },
+          "nodeIndex": "occupancy_by_property",
+          "nodeLineageTag": "c4d77dc8-e173-4a49-b502-a9e0f91e4225",
+          "size": {
+            "height": 248,
             "width": 234
           },
           "zIndex": 0

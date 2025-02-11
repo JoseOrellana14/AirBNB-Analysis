@@ -4,7 +4,7 @@
     "annotations": [
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"cleaned_DataFrame\",\"occupancy_leading_by_property\",\"occupancy_leading_by_property_type\",\"customer_loyalty_demographics\",\"customer_demographics_by_property\",\"customer_demographics_by_property_type\"]"
+        "value": "[\"cleaned_DataFrame\",\"occupancy_leading_by_property\",\"occupancy_leading_by_property_type\",\"customer_loyalty_demographics\",\"customer_demographics_by_property\",\"customer_demographics_by_property_type\",\"occupancy_by_property\"]"
       },
       {
         "name": "__PBI_TimeIntelligenceEnabled",
@@ -88,6 +88,15 @@
         "crossFilteringBehavior": "bothDirections",
         "fromColumn": "Propiedad",
         "fromTable": "occupancy_leading_by_property",
+        "toCardinality": "many",
+        "toColumn": "Propiedad",
+        "toTable": "cleaned_DataFrame"
+      },
+      {
+        "name": "3763a5f0-3542-4fc2-c875-7f46b32c49fd",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "Propiedad",
+        "fromTable": "occupancy_by_property",
         "toCardinality": "many",
         "toColumn": "Propiedad",
         "toTable": "cleaned_DataFrame"
@@ -1954,6 +1963,138 @@
           }
         ],
         "showAsVariationsOnly": true
+      },
+      {
+        "name": "occupancy_by_property",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Propiedad",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "9deeaf21-94cd-451c-a24c-5716e3f2600e",
+            "sourceColumn": "Propiedad",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "e31b9051-2e97-4d90-b0bf-fe4b167a0620",
+            "sourceColumn": "Year",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "41132c6d-0855-4ac6-8f3d-da3da25fbb6b",
+            "sourceColumn": "Month",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Total Nights Booked per Property",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "fc106769-a732-48ca-8f29-837eff43ce06",
+            "sourceColumn": "Total Nights Booked per Property",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Avg Lead Time per Property",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "399b0af0-5b63-407c-8735-45abefee0695",
+            "sourceColumn": "Avg Lead Time per Property",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Total Available Nights",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "d5a5d1be-e6b8-475e-9d92-29ddfb95a247",
+            "sourceColumn": "Total Available Nights",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Occupancy Rate (%)",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "7d0c86ce-6662-408e-8bfb-1e032cfbfa4d",
+            "sourceColumn": "Occupancy Rate (%)",
+            "summarizeBy": "sum"
+          }
+        ],
+        "lineageTag": "c4d77dc8-e173-4a49-b502-a9e0f91e4225",
+        "partitions": [
+          {
+            "name": "occupancy_by_property",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Origen = Csv.Document(File.Contents(\"C:\\Documents\\AirBNB\\github_repository\\occupancy_by_property.csv\"),[Delimiter=\",\", Columns=7, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
+                "    #\"Encabezados promovidos\" = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),",
+                "    #\"Tipo cambiado\" = Table.TransformColumnTypes(#\"Encabezados promovidos\",{{\"Propiedad\", type text}, {\"Year\", Int64.Type}, {\"Month\", Int64.Type}, {\"Total Nights Booked per Property\", Int64.Type}, {\"Avg Lead Time per Property\", type number}, {\"Total Available Nights\", Int64.Type}, {\"Occupancy Rate (%)\", type number}})",
+                "in",
+                "    #\"Tipo cambiado\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
       }
     ]
   }
