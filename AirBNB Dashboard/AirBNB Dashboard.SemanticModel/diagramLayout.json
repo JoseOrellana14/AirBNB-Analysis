@@ -5,7 +5,7 @@
       "ordinal": 0,
       "scrollPosition": {
         "x": 0,
-        "y": 0
+        "y": 8.00000031789144
       },
       "nodes": [
         {
@@ -121,6 +121,19 @@
           "nodeLineageTag": "c4d77dc8-e173-4a49-b502-a9e0f91e4225",
           "size": {
             "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 549.3333282470702,
+            "y": 614.633547207777
+          },
+          "nodeIndex": "occupancy_by_type",
+          "nodeLineageTag": "ca894e9b-480d-4c54-a5d6-86b92baa6047",
+          "size": {
+            "height": 272,
             "width": 234
           },
           "zIndex": 0
