@@ -118,6 +118,33 @@
         "toCardinality": "many",
         "toColumn": "Property Type",
         "toTable": "cleaned_DataFrame"
+      },
+      {
+        "name": "5666a047-a324-3798-e3e2-a31ea956dad1",
+        "fromColumn": "Propiedad",
+        "fromTable": "cleaned_DataFrame",
+        "toColumn": "Propiedad",
+        "toTable": "Property_Images"
+      },
+      {
+        "name": "5436e37b-3bba-0525-a3f0-0a5dab6a7a5d",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "YearMonth",
+        "fromTable": "occupancy_by_property",
+        "isActive": false,
+        "toCardinality": "many",
+        "toColumn": "YearMonth",
+        "toTable": "DateTable"
+      },
+      {
+        "name": "82b62d55-07e0-6033-e053-85a842f5d6ca",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "YearMonth",
+        "fromTable": "occupancy_by_type",
+        "isActive": false,
+        "toCardinality": "many",
+        "toColumn": "YearMonth",
+        "toTable": "DateTable"
       }
     ],
     "sourceQueryCulture": "en-US",
@@ -1543,22 +1570,6 @@
         ],
         "columns": [
           {
-            "name": "Image",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "isDataTypeInferred": true,
-            "isNameInferred": true,
-            "lineageTag": "11d8114e-0eaa-4345-874b-a04f14594943",
-            "sourceColumn": "[Image]",
-            "summarizeBy": "none",
-            "type": "calculatedTableColumn"
-          },
-          {
             "name": "Image Link",
             "annotations": [
               {
@@ -1566,12 +1577,28 @@
                 "value": "Automatic"
               }
             ],
-            "dataCategory": "Uncategorized",
+            "dataCategory": "ImageUrl",
             "dataType": "string",
             "isDataTypeInferred": true,
             "isNameInferred": true,
             "lineageTag": "49645fdf-6a3e-4406-a372-2b46195f6442",
             "sourceColumn": "[Image Link]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Propiedad",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "f8df42eb-cf0f-4655-98e0-0d2583ea8003",
+            "sourceColumn": "[Propiedad]",
             "summarizeBy": "none",
             "type": "calculatedTableColumn"
           }
@@ -1585,10 +1612,11 @@
               "expression": [
                 "",
                 "DATATABLE(",
-                "    \"Image\", STRING,",
+                "    \"Propiedad\", STRING,",
                 "    \"Image Link\", STRING,",
                 "    {",
-                "        {\"MACORORO 15 - 8G\", \"https://ibb.co/ZRh1qfc0\"}",
+                "        {\"MACORORO 15 - 8G\", \"https://a0.muscache.com/im/pictures/miso/Hosting-1306064401936198919/original/6eebf4c7-a7cb-48c8-bb61-554a7483cc40.jpeg?im_w=1440&im_format=avif\"},",
+                "        {\"MACORORO 12 - 12F\", \"https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6NTY2NzA3NDIwNzAzMjU1MjA1/original/104a77c8-4b2f-40a8-950a-7eb638ce094d.jpeg?im_w=720&im_format=avif\"}",
                 "    }",
                 ")",
                 ""
@@ -2110,6 +2138,21 @@
             "lineageTag": "7d0c86ce-6662-408e-8bfb-1e032cfbfa4d",
             "sourceColumn": "Occupancy Rate (%)",
             "summarizeBy": "sum"
+          },
+          {
+            "name": "YearMonth",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": "FORMAT(occupancy_by_property[Year], \"0000\") & \"-\" & FORMAT(occupancy_by_property[Month], \"00\")",
+            "isDataTypeInferred": true,
+            "lineageTag": "27bfe960-19bc-4535-85fa-3804d759b128",
+            "summarizeBy": "none",
+            "type": "calculated"
           }
         ],
         "lineageTag": "c4d77dc8-e173-4a49-b502-a9e0f91e4225",
@@ -2256,6 +2299,21 @@
             "lineageTag": "5f446db1-fed6-401a-8ec7-c81c955a05c9",
             "sourceColumn": "Occupancy Rate (%)",
             "summarizeBy": "sum"
+          },
+          {
+            "name": "YearMonth",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": "FORMAT(occupancy_by_type[Year], \"0000\") & \"-\" & FORMAT(occupancy_by_type[Month], \"00\")",
+            "isDataTypeInferred": true,
+            "lineageTag": "263352f6-d860-4aec-819b-58fd8f5d67b1",
+            "summarizeBy": "none",
+            "type": "calculated"
           }
         ],
         "lineageTag": "ca894e9b-480d-4c54-a5d6-86b92baa6047",
@@ -2273,6 +2331,110 @@
                 "    #\"Tipo cambiado\""
               ],
               "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "MeasuresTable",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "2ad5c16d9a53416090f23339e3f845d1"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Column",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "282d8dee-8739-48db-b4be-73e94a54cf37",
+            "sourceColumn": "[Column]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          }
+        ],
+        "lineageTag": "2192b087-5fdc-481a-88c0-30e2733e8dcd",
+        "measures": [
+          {
+            "name": "Occupancy Type Rate (%)",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "VAR TotalNightsBookedprop = ",
+              "    CALCULATE(",
+              "        SUM(occupancy_by_type[Total Nights Booked per Property Type]), ",
+              "        USERELATIONSHIP(occupancy_by_type[YearMonth], DateTable[YearMonth])",
+              "    )",
+              "",
+              "VAR TotalAvailableNightsprop = ",
+              "    CALCULATE(",
+              "        SUM(occupancy_by_type[Total Available Nights]), ",
+              "        USERELATIONSHIP(occupancy_by_type[YearMonth], DateTable[YearMonth])",
+              "    )",
+              "",
+              "RETURN ",
+              "IF(TotalAvailableNightsprop > 0, ",
+              "    DIVIDE(TotalNightsBookedprop, TotalAvailableNightsprop) * 100, ",
+              "    BLANK()",
+              ")",
+              ""
+            ],
+            "lineageTag": "039227f5-f81a-478b-a88e-0373cce27afe"
+          },
+          {
+            "name": "Occupancy Prop Rate (%)",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "VAR TotalNightsBookedprop = ",
+              "    CALCULATE(",
+              "        SUM(occupancy_by_property[Total Nights Booked per Property]), ",
+              "        USERELATIONSHIP(occupancy_by_property[YearMonth], DateTable[YearMonth])",
+              "    )",
+              "",
+              "VAR TotalAvailableNightsprop = ",
+              "    CALCULATE(",
+              "        SUM(occupancy_by_property[Total Available Nights]), ",
+              "        USERELATIONSHIP(occupancy_by_property[YearMonth], DateTable[YearMonth])",
+              "    )",
+              "",
+              "RETURN ",
+              "IF(TotalAvailableNightsprop > 0, ",
+              "    DIVIDE(TotalNightsBookedprop, TotalAvailableNightsprop) * 100, ",
+              "    BLANK()",
+              ")",
+              "",
+              ""
+            ],
+            "lineageTag": "4595500e-5525-4c74-b07f-007a49b896a6"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "MeasuresTable",
+            "mode": "import",
+            "source": {
+              "expression": "Row(\"Column\", BLANK())",
+              "type": "calculated"
             }
           }
         ]
