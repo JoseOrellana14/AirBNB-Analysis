@@ -15,3 +15,12 @@ We will begin with the visualization of the data
 ![alt text](image-3.png)
 # Relationships between tables, to ensure a dynamic dashboard
 ![alt text](image-4.png)
+
+# Analysis Dashboard Completed, no more editions will be made a part from updating the data, or new properties been introduced. All elements have dynamic features and drillthrough component was used.
+
+# General Anlysis Dashboard
+![alt text](image-5.png)
+# General Analysis OR(%)
+![alt text](image-6.png)
+# Detalle por Propiedad
+![alt text](image-7.png)
