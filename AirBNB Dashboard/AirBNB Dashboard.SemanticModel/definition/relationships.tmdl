@@ -1,0 +1,70 @@
+relationship 9887d4eb-be0c-482b-b7b5-b7dd87e2d30c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: cleaned_DataFrame.Salida
+	toColumn: LocalDateTable_be2d9c53-ab6e-48ef-a01a-9c315ddd4076.Date
+
+relationship 32075653-e3ef-44f6-8e21-e3248dd3c062
+	joinOnDateBehavior: datePartOnly
+	fromColumn: cleaned_DataFrame.'Fecha de Reservación'
+	toColumn: LocalDateTable_a38adb0d-78af-49f3-8743-38884f3d39f3.Date
+
+relationship AutoDetected_050b483a-f1c0-4104-8cfc-a6314dd19787
+	fromColumn: occupancy_leading_by_property.Propiedad
+	toColumn: customer_demographics_by_property.Propiedad
+
+relationship AutoDetected_8068db19-e956-4d34-84f9-a7755effd636
+	fromColumn: occupancy_leading_by_property_type.'Property Type'
+	toColumn: customer_demographics_by_property_type.'Property Type'
+
+relationship b604cacc-7a45-46af-abd2-7ebfcf3f2ec4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DateTable.Date
+	toColumn: LocalDateTable_5ab0bb2d-ad36-4621-b96a-56874f534995.Date
+
+relationship 2a63a219-9342-fb6f-88e6-d609838cdbd3
+	fromColumn: cleaned_DataFrame.Ingreso
+	toColumn: DateTable.Date
+
+relationship 2817df35-6398-cd33-f63e-31e5045e3a17
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: occupancy_leading_by_property.Propiedad
+	toColumn: cleaned_DataFrame.Propiedad
+
+relationship 3763a5f0-3542-4fc2-c875-7f46b32c49fd
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: occupancy_by_property.Propiedad
+	toColumn: cleaned_DataFrame.Propiedad
+
+relationship 15491925-90de-b879-695a-c0504bc2e7bb
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: occupancy_leading_by_property_type.'Property Type'
+	toColumn: cleaned_DataFrame.'Property Type'
+
+relationship 77ee919b-14b2-efbf-b041-7ffbde8d3394
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: occupancy_by_type.'Property Type'
+	toColumn: cleaned_DataFrame.'Property Type'
+
+relationship 5436e37b-3bba-0525-a3f0-0a5dab6a7a5d
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: occupancy_by_property.YearMonth
+	toColumn: DateTable.YearMonth
+
+relationship 82b62d55-07e0-6033-e053-85a842f5d6ca
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: occupancy_by_type.YearMonth
+	toColumn: DateTable.YearMonth
+
+relationship 5666a047-a324-3798-e3e2-a31ea956dad1
+	crossFilteringBehavior: bothDirections
+	fromColumn: cleaned_DataFrame.Propiedad
+	toColumn: Property_Images.Propiedad
+

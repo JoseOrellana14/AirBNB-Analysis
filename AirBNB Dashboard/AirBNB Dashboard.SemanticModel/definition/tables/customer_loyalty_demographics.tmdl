@@ -1,0 +1,32 @@
+table customer_loyalty_demographics
+	lineageTag: 77ff43ef-d7e6-46a2-a8c9-5513eef9fe75
+
+	column 'Guest Identifier'
+		dataType: string
+		lineageTag: 377f49d9-b4c9-45f2-8794-8d19ab9f99d6
+		summarizeBy: none
+		sourceColumn: Guest Identifier
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Bookings'
+		dataType: int64
+		formatString: 0
+		lineageTag: 352fd9d3-3171-4a4b-8afe-7b634717d4de
+		summarizeBy: sum
+		sourceColumn: Total Bookings
+
+		annotation SummarizationSetBy = Automatic
+
+	partition customer_loyalty_demographics = m
+		mode: import
+		source =
+				let
+				    Origen = Csv.Document(File.Contents("C:\Documents\AirBNB\github_repository\customer_loyalty_demographics.csv"),[Delimiter=",", Columns=2, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Encabezados promovidos" = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"Guest Identifier", type text}, {"Total Bookings", Int64.Type}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_ResultType = Table
+

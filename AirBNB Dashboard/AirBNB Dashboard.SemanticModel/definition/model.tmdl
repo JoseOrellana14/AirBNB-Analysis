@@ -1,0 +1,34 @@
+model Model
+	culture: es-ES
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["cleaned_DataFrame","occupancy_leading_by_property","occupancy_leading_by_property_type","customer_loyalty_demographics","customer_demographics_by_property","customer_demographics_by_property_type","occupancy_by_property","occupancy_by_type"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.140.1476.0 (25.02)+e8c6a85d1d09735c5c055c3244a60ff4076cd2cf
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table cleaned_DataFrame
+ref table DateTableTemplate_5598501c-f88f-4feb-ae58-4bfd63c1c3bd
+ref table LocalDateTable_be2d9c53-ab6e-48ef-a01a-9c315ddd4076
+ref table LocalDateTable_a38adb0d-78af-49f3-8743-38884f3d39f3
+ref table occupancy_leading_by_property
+ref table occupancy_leading_by_property_type
+ref table customer_loyalty_demographics
+ref table customer_demographics_by_property
+ref table customer_demographics_by_property_type
+ref table Property_Images
+ref table DateTable
+ref table LocalDateTable_5ab0bb2d-ad36-4621-b96a-56874f534995
+ref table occupancy_by_property
+ref table occupancy_by_type
+ref table MeasuresTable
+
+ref cultureInfo es-ES
+

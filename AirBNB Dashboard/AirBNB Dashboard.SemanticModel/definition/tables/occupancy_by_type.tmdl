@@ -1,0 +1,94 @@
+table occupancy_by_type
+	lineageTag: ca894e9b-480d-4c54-a5d6-86b92baa6047
+
+	column 'Property Type'
+		dataType: string
+		lineageTag: ce5f8e3e-87da-4b78-a863-644ee10c8098
+		summarizeBy: none
+		sourceColumn: Property Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 2b96c70d-088c-4759-b97c-5f4f93eeacd4
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: c8b2b8d7-2424-4f94-805e-9e2736fba77a
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Available Properties'
+		dataType: int64
+		formatString: 0
+		lineageTag: 0ac822d1-ffc2-4207-b9e1-ae3c7c5931bb
+		summarizeBy: sum
+		sourceColumn: Available Properties
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Nights Booked per Property Type'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1f312892-2944-4780-adaa-1b91ab2fc316
+		summarizeBy: sum
+		sourceColumn: Total Nights Booked per Property Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Avg Lead Time per Property Type'
+		dataType: double
+		lineageTag: 7b9657b3-c38e-4bea-8bab-ebf377c27adb
+		summarizeBy: sum
+		sourceColumn: Avg Lead Time per Property Type
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Available Nights'
+		dataType: int64
+		formatString: 0
+		lineageTag: 35b55f1a-91e8-45be-a90a-92edc4ac98a9
+		summarizeBy: sum
+		sourceColumn: Total Available Nights
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Occupancy Rate (%)'
+		dataType: double
+		lineageTag: 5f446db1-fed6-401a-8ec7-c81c955a05c9
+		summarizeBy: sum
+		sourceColumn: Occupancy Rate (%)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YearMonth = FORMAT(occupancy_by_type[Year], "0000") & "-" & FORMAT(occupancy_by_type[Month], "00")
+		lineageTag: 263352f6-d860-4aec-819b-58fd8f5d67b1
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition occupancy_by_type = m
+		mode: import
+		source =
+				let
+				    Origen = Csv.Document(File.Contents("C:\Documents\AirBNB\github_repository\occupancy_by_type.csv"),[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Encabezados promovidos" = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"Property Type", type text}, {"Year", Int64.Type}, {"Month", Int64.Type}, {"Available Properties", Int64.Type}, {"Total Nights Booked per Property Type", Int64.Type}, {"Avg Lead Time per Property Type", type number}, {"Total Available Nights", Int64.Type}, {"Occupancy Rate (%)", type number}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_ResultType = Table
+

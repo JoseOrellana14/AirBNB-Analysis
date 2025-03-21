@@ -1,0 +1,162 @@
+table cleaned_DataFrame
+	lineageTag: 20cca5dd-c361-48e2-84ee-3bb784ca5680
+
+	column 'Código de confirmación'
+		dataType: string
+		lineageTag: 84d2d712-c1d0-4901-97fa-040b20e96fc8
+		summarizeBy: none
+		sourceColumn: Código de confirmación
+
+		annotation SummarizationSetBy = Automatic
+
+	column Estado
+		dataType: string
+		lineageTag: 26c649fb-dbb3-43d1-abca-cc634cb02102
+		summarizeBy: none
+		sourceColumn: Estado
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nombre del huésped'
+		dataType: string
+		lineageTag: 2eb4622b-d4dd-4657-b5df-f9e6f32294be
+		summarizeBy: none
+		sourceColumn: Nombre del huésped
+
+		annotation SummarizationSetBy = Automatic
+
+	column Contacto
+		dataType: string
+		lineageTag: b96d688b-bab2-4ad9-8450-4dbc6d758412
+		summarizeBy: none
+		sourceColumn: Contacto
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Número de adultos'
+		dataType: int64
+		formatString: 0
+		lineageTag: 6ee41d3c-76d2-49a0-adf1-2bc1254302fb
+		summarizeBy: sum
+		sourceColumn: Número de adultos
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Número de niños'
+		dataType: int64
+		formatString: 0
+		lineageTag: e55c5020-343a-407d-ac3a-ccadf4b7e341
+		summarizeBy: sum
+		sourceColumn: Número de niños
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Número de bebés'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1784cda1-1745-4b1f-822d-5f1fc8fe2832
+		summarizeBy: sum
+		sourceColumn: Número de bebés
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ingreso
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c45d44b2-bc20-4016-8dcf-2ead17ef0eb1
+		summarizeBy: none
+		sourceColumn: Ingreso
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Salida
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f4ba4400-9a99-42b6-8e57-2da23029f221
+		summarizeBy: none
+		sourceColumn: Salida
+
+		variation Variación
+			isDefault
+			relationship: 9887d4eb-be0c-482b-b7b5-b7dd87e2d30c
+			defaultHierarchy: LocalDateTable_be2d9c53-ab6e-48ef-a01a-9c315ddd4076.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Número de noches'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1293533e-22ff-4897-91c8-526c5b8cf7d5
+		summarizeBy: sum
+		sourceColumn: Número de noches
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fecha de Reservación'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f4791c0d-643c-4a26-8d75-12e348a2e6f8
+		summarizeBy: none
+		sourceColumn: Fecha de Reservación
+
+		variation Variación
+			isDefault
+			relationship: 32075653-e3ef-44f6-8e21-e3248dd3c062
+			defaultHierarchy: LocalDateTable_a38adb0d-78af-49f3-8743-38884f3d39f3.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Propiedad
+		dataType: string
+		lineageTag: 317df47f-169c-4150-9d1c-8797520a623a
+		summarizeBy: none
+		sourceColumn: Propiedad
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ingresos Totales'
+		dataType: double
+		lineageTag: 72922e33-148e-44a8-af50-ce2c4a8127af
+		summarizeBy: sum
+		sourceColumn: Ingresos Totales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Property Type'
+		dataType: string
+		lineageTag: 1282f191-1086-49ef-a894-54eef13e192d
+		summarizeBy: none
+		sourceColumn: Property Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Management
+		dataType: string
+		lineageTag: c45433b4-ab8f-4cd0-a58d-d1c0e689d2c3
+		summarizeBy: none
+		sourceColumn: Management
+
+		annotation SummarizationSetBy = Automatic
+
+	partition cleaned_DataFrame = m
+		mode: import
+		source =
+				let
+				    Origen = Csv.Document(File.Contents("C:\Documents\AirBNB\github_repository\cleaned_DataFrame.csv"),[Delimiter=",", Columns=15, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Encabezados promovidos" = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"Código de confirmación", type text}, {"Estado", type text}, {"Nombre del huésped", type text}, {"Contacto", type text}, {"Número de adultos", Int64.Type}, {"Número de niños", Int64.Type}, {"Número de bebés", Int64.Type}, {"Ingreso", type date}, {"Salida", type date}, {"Número de noches", Int64.Type}, {"Fecha de Reservación", type date}, {"Propiedad", type text}, {"Ingresos Totales", type number}, {"Property Type", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegación
+

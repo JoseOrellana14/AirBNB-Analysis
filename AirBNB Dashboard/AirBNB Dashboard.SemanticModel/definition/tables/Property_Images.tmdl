@@ -1,0 +1,71 @@
+table Property_Images
+	lineageTag: 2e9427b8-f64e-490a-ad76-70d0c17cc7a9
+
+	column 'Image Link'
+		lineageTag: 49645fdf-6a3e-4406-a372-2b46195f6442
+		dataCategory: ImageUrl
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Image Link]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Propiedad
+		lineageTag: f8df42eb-cf0f-4655-98e0-0d2583ea8003
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Propiedad]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Property_Images = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE(
+				    "Propiedad", STRING,
+				    "Image Link", STRING,
+				    {
+				        {
+				            "HOTEL RADISSON - SENIOR SUITE", "https://a0.muscache.com/im/pictures/miso/Hosting-1038675522424515682/original/6e51628f-f6cf-4235-8804-b1a6231a0823.png?im_w=720&im_format=avif"
+				        },
+				        {
+				            "MACORORO 15 - 8G", "https://a0.muscache.com/im/pictures/miso/Hosting-1306064401936198919/original/6eebf4c7-a7cb-48c8-bb61-554a7483cc40.jpeg?im_w=1440&im_format=avif"
+				        },
+				        {
+				            "MACORORO 12 - 12F", "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6NTY2NzA3NDIwNzAzMjU1MjA1/original/104a77c8-4b2f-40a8-950a-7eb638ce094d.jpeg?im_w=720&im_format=avif"
+				        },
+				        {
+				            "SKY ELITE - 115", "https://a0.muscache.com/im/pictures/miso/Hosting-1232170360825444751/original/4a64d464-f943-48d5-a5f4-6578f6ef32d3.jpeg?im_w=720&im_format=avif"
+				        },
+				        {
+				            "SKY ELITE - 132", "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTE2NDQ1OTIyMjI1NzMzMzQ3MA%3D%3D/original/fec7adac-3419-4285-a972-abb9170871ef.jpeg?im_w=720&im_format=avif"
+				        },
+				        {
+				            "SKY ELITE - 229", "https://a0.muscache.com/im/pictures/miso/Hosting-1129805604270402185/original/a89abcd9-3255-438b-b694-9d9dfec560de.jpeg?im_w=1440&im_format=avif"
+				        },
+				        {
+				            "SKY ELITE - 320", "https://a0.muscache.com/im/pictures/miso/Hosting-1039451018958843607/original/285ba8a9-7012-4aec-859b-77917c76a564.jpeg?im_w=720&im_format=avif"
+				        },
+				        {
+				            "SKY ELITE - 323", "https://a0.muscache.com/im/pictures/miso/Hosting-1039469897519317438/original/9a1dfef1-cf04-4e91-a450-9d5aad06b5a4.jpeg?im_w=720&im_format=avif"
+				        },
+				        {
+				            "SKY ELITE - 510", "https://a0.muscache.com/im/pictures/miso/Hosting-1295236595358034719/original/dd3d0c13-dd59-41a1-89e9-c342229a8a3c.jpeg?im_w=720&im_format=avif"
+				        },
+				        {
+				            "SKY ELITE - 524", "https://a0.muscache.com/im/pictures/miso/Hosting-1039484431343722859/original/b831336f-a188-47d3-89c4-444a17c002d9.jpeg?im_w=720&im_format=avif"
+				        },
+				        {
+				            "TORRES SIRARI - 5A", "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTAzOTk0MTA5NTkwNTg4MDYwNQ%3D%3D/original/550397b3-957b-4bf6-a5f3-902c3362e00c.jpeg?im_w=720&im_format=avif"
+				        },
+				        {
+				            "YOU - 316", "https://a0.muscache.com/im/pictures/miso/Hosting-1236527354872519303/original/813043b7-195c-4bc5-a1fc-f9b72ff539db.jpeg?im_w=720&im_format=avif"
+				        }
+				    }
+				)
+				
+				```
+
+	annotation PBI_Id = 060679b973934a12b1876809e4ea0ee2
+

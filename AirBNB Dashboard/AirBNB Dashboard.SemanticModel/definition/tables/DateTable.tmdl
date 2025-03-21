@@ -1,0 +1,103 @@
+table DateTable
+	lineageTag: 800dc560-bb90-4125-b130-e15785210eb5
+
+	column Date
+		formatString: General Date
+		lineageTag: 710e53f9-952a-4b35-b057-0e146b592d18
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variación
+			isDefault
+			relationship: b604cacc-7a45-46af-abd2-7ebfcf3f2ec4
+			defaultHierarchy: LocalDateTable_5ab0bb2d-ad36-4621-b96a-56874f534995.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		formatString: 0
+		lineageTag: 9cccc4c5-6113-4f3f-b5d1-fe26401f0e57
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		formatString: 0
+		lineageTag: 9d2eeb32-eed0-4ceb-9d01-5e3886b7c9eb
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthName
+		lineageTag: c90c2ef7-fc9e-46c1-88df-60715a76ee4a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [MonthName]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		formatString: 0
+		lineageTag: 7657676e-d1a9-41e1-ac51-0d7a131f80fb
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Day]
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayName
+		lineageTag: bab9a456-a202-48d9-b42b-52691759cdd2
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [DayName]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		formatString: 0
+		lineageTag: 9ba5fd59-cac5-4de0-8172-b1ea8c4e4240
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		lineageTag: 9ebc3b1f-bcb1-4646-8a4e-4d6791e94096
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearMonth]
+
+		annotation SummarizationSetBy = Automatic
+
+	column UTC
+		lineageTag: a3e799ac-9736-406a-a714-ce04add0f567
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [UTC]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DateTable = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS(
+				    CALENDAR(MIN(cleaned_DataFrame[Ingreso]), MAX(cleaned_DataFrame[Ingreso])),
+				    "Year", YEAR([Date]),
+				    "Month", MONTH([Date]),
+				    "MonthName", FORMAT([Date], "MMMM"),
+				    "Day", DAY([Date]),
+				    "DayName", FORMAT([Date], "DDDD"),
+				    "Quarter", QUARTER([Date]),
+				    "YearMonth", FORMAT([Date], "YYYY-MM"),
+				    "UTC", FORMAT([Date], "DD/MM/YYYY")
+				)
+
+	annotation PBI_Id = 32151edc14c844c7a9bcd169b8d63161
+

@@ -1,0 +1,89 @@
+table MeasuresTable
+	lineageTag: 2192b087-5fdc-481a-88c0-30e2733e8dcd
+
+	measure 'Occupancy Type Rate (%)' = ```
+			
+			VAR TotalNightsBookedprop = 
+			    CALCULATE(
+			        SUM(occupancy_by_type[Total Nights Booked per Property Type]), 
+			        USERELATIONSHIP(occupancy_by_type[YearMonth], DateTable[YearMonth])
+			    )
+			
+			VAR TotalAvailableNightsprop = 
+			    CALCULATE(
+			        SUM(occupancy_by_type[Total Available Nights]), 
+			        USERELATIONSHIP(occupancy_by_type[YearMonth], DateTable[YearMonth])
+			    )
+			
+			RETURN 
+			IF(TotalAvailableNightsprop > 0, 
+			    DIVIDE(TotalNightsBookedprop, TotalAvailableNightsprop) * 100, 
+			    BLANK()
+			)
+			
+			```
+		lineageTag: 039227f5-f81a-478b-a88e-0373cce27afe
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Occupancy Prop Rate (%)' = ```
+			
+			VAR TotalNightsBookedprop = 
+			    CALCULATE(
+			        SUM(occupancy_by_property[Total Nights Booked per Property]), 
+			        USERELATIONSHIP(occupancy_by_property[YearMonth], DateTable[YearMonth])
+			    )
+			
+			VAR TotalAvailableNightsprop = 
+			    CALCULATE(
+			        SUM(occupancy_by_property[Total Available Nights]), 
+			        USERELATIONSHIP(occupancy_by_property[YearMonth], DateTable[YearMonth])
+			    )
+			
+			RETURN 
+			IF(TotalAvailableNightsprop > 0, 
+			    DIVIDE(TotalNightsBookedprop, TotalAvailableNightsprop) * 100, 
+			    BLANK()
+			)
+			
+			
+			```
+		lineageTag: 4595500e-5525-4c74-b07f-007a49b896a6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dynamic Drillthrough Title' = ```
+			
+			VAR SelectedProperty = SELECTEDVALUE(cleaned_DataFrame[Propiedad], "All Properties")
+			
+			RETURN 
+			SelectedProperty
+			```
+		lineageTag: 8be36b76-f387-414a-ac99-354359af0f8b
+
+	measure 'Selected Property Image' = ```
+			
+			VAR SelectedImage = SELECTEDVALUE(Property_Images[Image Link])
+			
+			RETURN 
+			IF(NOT(ISBLANK(SelectedImage)), SelectedImage, BLANK())
+			
+			```
+		lineageTag: 9094d5bc-0686-41ba-9c73-ade9e84950e6
+		dataCategory: ImageUrl
+
+	column Column
+		formatString: 0
+		lineageTag: 282d8dee-8739-48db-b4be-73e94a54cf37
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition MeasuresTable = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 2ad5c16d9a53416090f23339e3f845d1
+

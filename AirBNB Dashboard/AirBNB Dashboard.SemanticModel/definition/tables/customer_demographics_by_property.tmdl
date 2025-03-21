@@ -1,0 +1,59 @@
+table customer_demographics_by_property
+	lineageTag: 364671f7-9f4d-4362-879c-5efe9e2e9f00
+
+	column Propiedad
+		dataType: string
+		lineageTag: 57afaa15-9721-45ff-9a26-866f71faf696
+		summarizeBy: none
+		sourceColumn: Propiedad
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Número de adultos'
+		dataType: int64
+		formatString: 0
+		lineageTag: c491837a-d37d-464f-98a5-e06a215c05b6
+		summarizeBy: none
+		sourceColumn: Número de adultos
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Número de niños'
+		dataType: int64
+		formatString: 0
+		lineageTag: d92d2122-558b-4162-a46f-29b0dc61d765
+		summarizeBy: none
+		sourceColumn: Número de niños
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Número de bebés'
+		dataType: int64
+		formatString: 0
+		lineageTag: ed099c58-feba-48e5-bfb0-51f0716d1220
+		summarizeBy: none
+		sourceColumn: Número de bebés
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Código de confirmación'
+		dataType: int64
+		formatString: 0
+		lineageTag: 18211614-b01f-4ff4-a52d-6445d74da3dd
+		summarizeBy: none
+		sourceColumn: Código de confirmación
+
+		annotation SummarizationSetBy = Automatic
+
+	partition customer_demographics_by_property = m
+		mode: import
+		source =
+				let
+				    Origen = Csv.Document(File.Contents("C:\Documents\AirBNB\github_repository\customer_demographics_by_property.csv"),[Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Encabezados promovidos" = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"Propiedad", type text}, {"Número de adultos", Int64.Type}, {"Número de niños", Int64.Type}, {"Número de bebés", Int64.Type}, {"Código de confirmación", Int64.Type}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_ResultType = Table
+

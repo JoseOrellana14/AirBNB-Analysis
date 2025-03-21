@@ -1,0 +1,79 @@
+table occupancy_leading_by_property
+	lineageTag: d55f8fa9-a738-4670-8fbb-cd0e346d34b1
+
+	column Propiedad
+		dataType: string
+		lineageTag: e2abfe1a-6131-47fd-bbd9-68ac1932aa7a
+		summarizeBy: none
+		sourceColumn: Propiedad
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: 9d1137f0-4e3d-44ef-abdb-52d0b7d124b6
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 4877f134-fe90-4dc8-a9aa-ea01571b266c
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Nights Booked per Property'
+		dataType: int64
+		formatString: 0
+		lineageTag: d7ae73ad-ebbf-4175-863f-b04b4a3c5bd5
+		summarizeBy: sum
+		sourceColumn: Total Nights Booked per Property
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Avg Lead Time per Property'
+		dataType: double
+		lineageTag: fa02489c-1a82-485b-80b2-8325023d9562
+		summarizeBy: sum
+		sourceColumn: Avg Lead Time per Property
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Available Nights'
+		dataType: int64
+		formatString: 0
+		lineageTag: 20d1054f-19a4-4108-8454-f2fd644c68f1
+		summarizeBy: sum
+		sourceColumn: Total Available Nights
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Occupancy Rate (%)'
+		dataType: double
+		lineageTag: e0921942-cdb5-4b4f-a499-79a6a25d473d
+		summarizeBy: sum
+		sourceColumn: Occupancy Rate (%)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition occupancy_leading_by_property = m
+		mode: import
+		source =
+				let
+				    Origen = Csv.Document(File.Contents("C:\Documents\AirBNB\github_repository\occupancy_leading_by_property.csv"),[Delimiter=",", Columns=7, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Encabezados promovidos" = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"Propiedad", type text}, {"Month", Int64.Type}, {"Year", Int64.Type}, {"Total Nights Booked per Property", Int64.Type}, {"Avg Lead Time per Property", type number}, {"Total Available Nights", Int64.Type}, {"Occupancy Rate (%)", type number}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_ResultType = Table
+
