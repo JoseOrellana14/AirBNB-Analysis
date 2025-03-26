@@ -68,3 +68,44 @@ relationship 5666a047-a324-3798-e3e2-a31ea956dad1
 	fromColumn: cleaned_DataFrame.Propiedad
 	toColumn: Property_Images.Propiedad
 
+relationship eb34be1b-9f2c-4901-9965-2e02f3889bb4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: cleaned_BOB_df.Salida
+	toColumn: LocalDateTable_c5dc16a4-7473-47e3-a455-8b267f03aef3.Date
+
+relationship 39a77eb9-adff-ba4c-09d9-1f962398ffb5
+	fromColumn: cleaned_BOB_df.Ingreso
+	toColumn: DateTable.Date
+
+relationship 973f4b09-ed10-39a1-caa1-fef973837522
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: cleaned_BOB_df.'Property Type'
+	toColumn: occupancy_leading_by_property_type.'Property Type'
+
+relationship 6fef0066-c55a-dc45-1505-ecd2c1752962
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: cleaned_BOB_df.Propiedad
+	toColumn: occupancy_leading_by_property.Propiedad
+
+relationship b22e7157-a685-00d0-9da1-cf25a6b82bd3
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: cleaned_BOB_df.Propiedad
+	toColumn: occupancy_by_property.Propiedad
+
+relationship 58ad7278-1119-daf7-08e5-08c0ff3eea7b
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: cleaned_BOB_df.'Property Type'
+	toColumn: occupancy_by_type.'Property Type'
+
+relationship 6849d4c5-65ff-2c57-93da-361d6e063cba
+	fromColumn: cleaned_BOB_df.Propiedad
+	toColumn: Property_Images.Propiedad
+

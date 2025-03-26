@@ -4,13 +4,13 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 0,
-        "y": 0
+        "x": 226.66666666666669,
+        "y": 220
       },
       "nodes": [
         {
           "location": {
-            "x": 0,
+            "x": 356.66666666666663,
             "y": 0
           },
           "nodeIndex": "cleaned_DataFrame",
@@ -23,7 +23,7 @@
         },
         {
           "location": {
-            "x": 285.66666666666669,
+            "x": 1132.3333333333335,
             "y": 0
           },
           "nodeIndex": "occupancy_leading_by_property",
@@ -36,8 +36,8 @@
         },
         {
           "location": {
-            "x": 556.33333333333337,
-            "y": 0
+            "x": 1478,
+            "y": 216.66666666666669
           },
           "nodeIndex": "occupancy_leading_by_property_type",
           "nodeLineageTag": "576108ed-765c-48d6-acb1-5d11b468a077",
@@ -49,8 +49,8 @@
         },
         {
           "location": {
-            "x": 853.66666666666663,
-            "y": 12.666666666666671
+            "x": 1752,
+            "y": 664.33333333333337
           },
           "nodeIndex": "customer_loyalty_demographics",
           "nodeLineageTag": "77ff43ef-d7e6-46a2-a8c9-5513eef9fe75",
@@ -62,8 +62,8 @@
         },
         {
           "location": {
-            "x": 1136,
-            "y": 50
+            "x": 1474.3333333333333,
+            "y": 0
           },
           "nodeIndex": "customer_demographics_by_property",
           "nodeLineageTag": "364671f7-9f4d-4362-879c-5efe9e2e9f00",
@@ -75,8 +75,8 @@
         },
         {
           "location": {
-            "x": 1420,
-            "y": 50
+            "x": 1766.6666666666665,
+            "y": 0
           },
           "nodeIndex": "customer_demographics_by_property_type",
           "nodeLineageTag": "db87b099-877d-47f0-b9bd-debab48e0e41",
@@ -88,8 +88,8 @@
         },
         {
           "location": {
-            "x": 873.33333079020167,
-            "y": 313.33333333333343
+            "x": 1741.6666641235349,
+            "y": 433.33333333333343
           },
           "nodeIndex": "Property_Images",
           "nodeLineageTag": "2e9427b8-f64e-490a-ad76-70d0c17cc7a9",
@@ -101,8 +101,8 @@
         },
         {
           "location": {
-            "x": 494.76483386523944,
-            "y": 339.53418883110788
+            "x": 811.43150053190607,
+            "y": 262.8675221644412
           },
           "nodeIndex": "DateTable",
           "nodeLineageTag": "800dc560-bb90-4125-b130-e15785210eb5",
@@ -114,8 +114,8 @@
         },
         {
           "location": {
-            "x": 194.99999745686836,
-            "y": 596.60042774888734
+            "x": 834.99999745686841,
+            "y": 746.60042774888734
           },
           "nodeIndex": "occupancy_by_property",
           "nodeLineageTag": "c4d77dc8-e173-4a49-b502-a9e0f91e4225",
@@ -127,8 +127,8 @@
         },
         {
           "location": {
-            "x": 887.66666158040346,
-            "y": 562.96688054111041
+            "x": 1347.6666615804033,
+            "y": 541.30021387444378
           },
           "nodeIndex": "occupancy_by_type",
           "nodeLineageTag": "ca894e9b-480d-4c54-a5d6-86b92baa6047",
@@ -140,8 +140,8 @@
         },
         {
           "location": {
-            "x": 1162.3333333333333,
-            "y": 324.65011202348478
+            "x": 1752.0000050862629,
+            "y": 182.98344535681809
           },
           "nodeIndex": "MeasuresTable",
           "nodeLineageTag": "2192b087-5fdc-481a-88c0-30e2733e8dcd",
@@ -150,6 +150,19 @@
             "width": 234
           },
           "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 223.33333333333331,
+            "y": 569.98344027055521
+          },
+          "nodeIndex": "cleaned_BOB_df",
+          "nodeLineageTag": "445c22e2-482a-47c1-bdd5-f13cd6c7fef5",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "Todas las tablas",

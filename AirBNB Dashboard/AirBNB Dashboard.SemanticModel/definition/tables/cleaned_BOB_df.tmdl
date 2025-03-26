@@ -1,0 +1,145 @@
+table cleaned_BOB_df
+	lineageTag: 445c22e2-482a-47c1-bdd5-f13cd6c7fef5
+
+	column 'Nombre del huésped'
+		dataType: string
+		lineageTag: 99f7f6f8-580a-401d-b6a4-d8415d25f8df
+		summarizeBy: none
+		sourceColumn: Nombre del huésped
+
+		annotation SummarizationSetBy = Automatic
+
+	column Contacto
+		dataType: string
+		lineageTag: f346bb24-d333-491b-96bd-a360a717ff9a
+		summarizeBy: none
+		sourceColumn: Contacto
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Número de adultos'
+		dataType: int64
+		formatString: 0
+		lineageTag: 34bee5cf-9bc0-4f72-8c9e-4aadca2680a7
+		summarizeBy: sum
+		sourceColumn: Número de adultos
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Número de niños'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7d2f9012-c22f-46cb-8b86-742bed632cbe
+		summarizeBy: sum
+		sourceColumn: Número de niños
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ingreso
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d5f251bd-1a6e-4ca2-82e9-c3e83163661f
+		summarizeBy: none
+		sourceColumn: Ingreso
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Salida
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0cea97da-c3e0-4cdf-8db9-8ecb42285008
+		summarizeBy: none
+		sourceColumn: Salida
+
+		variation Variación
+			isDefault
+			relationship: eb34be1b-9f2c-4901-9965-2e02f3889bb4
+			defaultHierarchy: LocalDateTable_c5dc16a4-7473-47e3-a455-8b267f03aef3.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Número de noches'
+		dataType: int64
+		formatString: 0
+		lineageTag: 4c795007-5a5e-401c-9099-44b1506470cc
+		summarizeBy: sum
+		sourceColumn: Número de noches
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fecha de Reservación'
+		dataType: string
+		lineageTag: 117deb5d-319f-4fdd-83fa-baef72865540
+		summarizeBy: none
+		sourceColumn: Fecha de Reservación
+
+		annotation SummarizationSetBy = Automatic
+
+	column Propietario
+		dataType: string
+		lineageTag: ced1849b-854a-4fda-a710-8ef835ea6070
+		summarizeBy: none
+		sourceColumn: Propietario
+
+		annotation SummarizationSetBy = Automatic
+
+	column Propiedad
+		dataType: string
+		lineageTag: f1eba859-2f5e-4867-a720-faa0490939ea
+		summarizeBy: none
+		sourceColumn: Propiedad
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ingresos Totales BOB'
+		dataType: double
+		lineageTag: 400780ab-1364-4e59-9729-fb99c406095a
+		summarizeBy: sum
+		sourceColumn: Ingresos Totales BOB
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Limpieza BOB'
+		dataType: double
+		lineageTag: f675ae06-6ff2-4a8b-96ee-75f532d588ce
+		summarizeBy: sum
+		sourceColumn: Limpieza BOB
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Property Type'
+		dataType: string
+		lineageTag: 0a26e823-04e3-4247-b6f1-e5458cf91463
+		summarizeBy: none
+		sourceColumn: Property Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Management
+		dataType: string
+		lineageTag: 8a6dae8f-c896-4481-8e68-80b1ede0384b
+		summarizeBy: none
+		sourceColumn: Management
+
+		annotation SummarizationSetBy = Automatic
+
+	partition cleaned_BOB_df = m
+		mode: import
+		source =
+				let
+				    Origen = Csv.Document(File.Contents("C:\Documents\AirBNB\github_repository\cleaned_BOB_df.csv"),[Delimiter=",", Columns=14, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Encabezados promovidos" = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"Nombre del huésped", type text}, {"Contacto", type text}, {"Número de adultos", Int64.Type}, {"Número de niños", Int64.Type}, {"Ingreso", type date}, {"Salida", type date}, {"Número de noches", Int64.Type}, {"Fecha de Reservación", type text}, {"Propietario", type text}, {"Propiedad", type text}, {"Ingresos Totales BOB", type number}, {"Limpieza BOB", type number}, {"Property Type", type text}, {"Management", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_ResultType = Table
+

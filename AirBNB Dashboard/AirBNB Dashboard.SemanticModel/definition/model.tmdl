@@ -6,11 +6,11 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
-annotation PBI_QueryOrder = ["cleaned_DataFrame","occupancy_leading_by_property","occupancy_leading_by_property_type","customer_loyalty_demographics","customer_demographics_by_property","customer_demographics_by_property_type","occupancy_by_property","occupancy_by_type"]
+annotation PBI_QueryOrder = ["cleaned_DataFrame","occupancy_leading_by_property","occupancy_leading_by_property_type","customer_loyalty_demographics","customer_demographics_by_property","customer_demographics_by_property_type","occupancy_by_property","occupancy_by_type","cleaned_BOB_df"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBIDesktopVersion = 2.140.1476.0 (25.02)+e8c6a85d1d09735c5c055c3244a60ff4076cd2cf
+annotation PBIDesktopVersion = 2.140.1577.0 (25.02)+00af0910c5ca19a229c472b0dfc17a2c488f6b0a
 
 annotation PBI_ProTooling = ["DevMode"]
 
@@ -29,6 +29,8 @@ ref table LocalDateTable_5ab0bb2d-ad36-4621-b96a-56874f534995
 ref table occupancy_by_property
 ref table occupancy_by_type
 ref table MeasuresTable
+ref table cleaned_BOB_df
+ref table LocalDateTable_c5dc16a4-7473-47e3-a455-8b267f03aef3
 
 ref cultureInfo es-ES
 
